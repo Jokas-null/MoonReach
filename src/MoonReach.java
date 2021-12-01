@@ -34,62 +34,17 @@ public class MoonReach {
         }
     }
 
-    public void movePlayer(int row, int column,String namePlayer, String direction) {
+    public void movePlayer(int row, int column, String namePlayer) {
         int dice = throwDice() - 1;
         System.out.println("Dice: " + dice);
-        grid[row][column] = namePlayer;
         
-        if(direction.equals("rigth")){
-            if(grid[row][column] == grid[0][0]){
-
-                if(grid[row][column].equals(" O ")){
-                    grid[row][column] = namePlayer;
-                }else{
-                    grid[row][column] = grid[row][column].charAt(1) + "," + namePlayer.charAt(1);
-                }
-                
-            }else if(grid[row] == grid[0]){
-                
-                if(grid[row][column + dice] == " O "){
-                    grid[row][column + dice] = namePlayer;
-                    direction = "rigth";
-                }
+        if(grid[row][column].equals(grid[0][0])){
+            if(grid[row][column].equals(" O ")){
+                grid[row][column + dice] = namePlayer;
+            }else{
+                grid[row][column + dice] = " " +  "," + namePlayer + " ";
             }
-            
-        }else if(direction.equals("left")){
-    
-            if(grid[row] == grid[4]){
-
-                if(grid[row][column - dice] == " O "){
-                    grid[row][column - dice] = namePlayer;
-                    direction = "lelf";
-                }
-            }
-    
-        }else if(direction.equals("down")){
-                    
-            if(grid[column] == grid[9]){
-
-                if(grid[row + dice][column] == " O "){
-                    grid[row +dice][column] = namePlayer;
-                    direction = "down";
-                }
-            }
-        
-        }else if(direction.equals("up")){
-        
-            if(grid[column] == grid[0]){
-
-                if(grid[row + dice][column] == " O "){
-                    grid[row + dice][column] = namePlayer;
-                    direction = "up";
-                }
-            }
-    
-        }else{
-            grid[row][column] = grid[row][column].charAt(1) + "," + namePlayer.charAt(1);
         }
-        
     }
 
     public void clearScreen() {

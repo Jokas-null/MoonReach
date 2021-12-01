@@ -8,14 +8,6 @@ public class App {
         MoonReach controler = new MoonReach();
         controler.createGrid();
         controler.createSpecialCells();
-        controler.printGrid();
-
-        Player player1 = new Player("Jokas");
-        Player player2 = new Player("Roque");
-
-        player1.movePlayer(0, 0, "J", "rigth");
-        player2.movePlayer(0, 0, "R", "rigth");
-        controler.printGrid();
 
         do{
             menu();
@@ -28,14 +20,20 @@ public class App {
                         System.console().readLine();
                     break;
                 case 2:
-                        /*
+                        
                         controler.clearScreen();
-                        System.out.println("Write player 1 name: ");
-                        Player player1 = new Player(System.console().readLine());
-                        player1(0,0,"J","rigth");
-                        System.out.println("Write player 2 name: ");
-                        Player player2 = new Player(System.console().readLine());*/
+                        System.out.print("Write player 1 name: ");
+                        String player1 = System.console().readLine();
 
+
+
+                        System.out.print("Write player 2 name: ");
+                        String player2 = System.console().readLine();
+                      
+
+                        controler.movePlayer(0, 0, getFirtsLetter(player1));
+                        controler.movePlayer(0, 0, getFirtsLetter(player2));
+                        controler.printGrid();
                         
                     break;
                 case 3:
@@ -62,5 +60,10 @@ public class App {
         System.out.println("3. Exit");
         System.out.print("Enter your option: ");
         opc = Integer.parseInt(System.console().readLine());
+    }
+
+    public static String getFirtsLetter(String name){
+        String x = name.toUpperCase().charAt(0) + name.substring(1, name.length());
+        return x.charAt(0) + "";
     }
 }

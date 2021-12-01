@@ -1,35 +1,11 @@
 public class Player extends MoonReach{
-    String name;
-    String[][]moveGrid;
-    private String direction;
-    private int fila;
-    private int columna;
-
-    public Player(String x) {
-        this.name = x;
-    }
+    public String name;
+    public int fila;
+    public int columna;
     
-    public int getFila() {
-        return fila;
-    }
-
-    public void setFila(int fila) {
+    public Player(int fila, int columna, String name){
+        this.name = name;
         this.fila = fila;
-    }
-
-    public int getColumna() {
-        return columna;
-    }
-
-    public void setColumna(int columna) {
         this.columna = columna;
-    }
-    
-    public void setDirections(String x){
-        this.direction = x;
-    }
-
-    public String getDirections(){
-        return this.direction;
     }
 }
