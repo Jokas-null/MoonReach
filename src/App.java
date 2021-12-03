@@ -1,49 +1,56 @@
+import java.util.Scanner;
+
 public class App {
     public static int opc;
+    public static Scanner sc = new Scanner(System.in);
+    public static String player1;
+    public static String player2;
     public static void main(String[] args) throws Exception {
-        Banner banner = new Banner();
-        banner.displayBanner();
-        info();
-
+        //Banner banner = new Banner();
+        //banner.displayBanner();
+        //info();
         MoonReach controler = new MoonReach();
-        controler.createGrid();
-        controler.createSpecialCells();
-
-        do{
-            menu();
+        
+        System.out.println("Welcome to MooReach");
+        System.out.println("Before you start, please input players names");
+        System.out.print("Player 1: ");
+        player1 = sc.nextLine();
+        System.out.print("Player 2: ");
+        player2 = sc.nextLine();
+        controler.clearScreen();
+        menu();
+        
+        do {
             switch (opc) {
                 case 1:
-                        controler.clearScreen();
-                        controler.printGrid();
-                        System.out.println("\n");
-                        System.out.print("Press enter to continue...");
-                        System.console().readLine();
+                     controler.printGrid();
                     break;
-                case 2:
-                        
-                        controler.clearScreen();
-                        System.out.print("Write player 1 name: ");
-                        String player1 = System.console().readLine();
-
-
-
-                        System.out.print("Write player 2 name: ");
-                        String player2 = System.console().readLine();
-                      
-
-                        controler.movePlayer(0, 0, getFirtsLetter(player1));
-                        controler.movePlayer(0, 0, getFirtsLetter(player2));
-                        controler.printGrid();
-                        
-                    break;
-                case 3:
-                    System.out.println("Bye");
-                    break;
+                 case 2:
+                     int dice = controler.throwDice();
+                     int dice2 = controler.throwDice();
+                     controler.clearScreen();
+     
+                     System.out.println("Player "+ player1 + " Dice: " + dice);
+                     controler.movePlayer(getFirtsLetter(player1), dice);
+     
+                     System.out.println("Player "+ player2 + " Dice: " + dice2);
+                     controler.movePlayer(getFirtsLetter(player2), dice2);
+     
+                     controler.printGrid();
+                     System.out.println("Press enter to continue");
+                        sc.nextLine();
+                     controler.clearScreen();
+                     menu();
+                     break;
+                 case 3:
+                     System.out.println("Bye!");
+                     break;
+            
                 default:
-                    System.out.println("Invalid option");
                     break;
             }
-        }while(opc != 3);
+        } while (opc != 3);
+        
     }
 
     public static void info(){
@@ -53,8 +60,7 @@ public class App {
         System.out.println("\t\t\t\t\t\tVersion 1.1");
     }
 
-    public static void menu() {
-        System.out.println("Welcome to MooReach");
+    public static void menu(){
         System.out.println("1. Display Grid");
         System.out.println("2. Play");
         System.out.println("3. Exit");
